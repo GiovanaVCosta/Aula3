@@ -1,9 +1,11 @@
 package br.senai.sp.jandira.game.model;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Register {
 
+    int avaliaAmbos = 0;
     player player = new player();
 
     Enemy enemy = new Enemy();
@@ -25,7 +27,13 @@ public class Register {
         player.skin = teclado.nextLine();
         System.out.println("player cadastrado com sucesso");
         System.out.println("----------------------------");
-    }
+
+        if (avaliaAmbos != 1){
+            output.PrintPlayer(player);
+        }
+
+        }
+
     public void EnemyRegister(){
         System.out.println("----------------------------");
         System.out.println("-------CADASTRO ENEMY-------");
@@ -36,9 +44,9 @@ public class Register {
         System.out.println("-------player cadastrado com sucesso--------");
         System.out.println("----------------------------");
 
-        Output output = new Output();
-
-
+        if (avaliaAmbos != 1) {
+            output.PrintEnemy(enemy);
+        }
     }
 
     public void Decision(){
@@ -48,19 +56,20 @@ public class Register {
         System.out.println("O que deseja cadstrar[Player/Enemy/Ambos]: ");
         decision = teclado.nextLine();
 
-        switch (decision) {
-            case "Player":
+        switch (decision.toLowerCase()) {
+            case "player":
                 PlayerRegister();
                 break;
-            case "Enemy":
+            case "enemy":
                 EnemyRegister();
                 break;
             case "Ambos":
                 bothRegister();
                 break;
-            default:
-                System.out.println("Escolha uma opção valida");
-                Decision();
+
+
         }
+
+        System.out.println("-----------------");
         }
 }
